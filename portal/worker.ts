@@ -34,7 +34,9 @@ export default {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) {
       const pageRoute = ['/', '/order', '/quick-order', '/stats'].includes(url.pathname) || url.pathname.startsWith('/receipt/');
-      const assetRequest = pageRoute ? new Request(new URL('/index.html',request.url), request) : request;
+      // Assets canonicalizes /index.html to / with a redirect. Fetch the canonical
+      // asset internally so the customer's /order or /receipt URL stays intact.
+      const assetRequest = pageRoute ? new Request(new URL('/',request.url), request) : request;
       const response = await env.ASSETS.fetch(assetRequest);
       if (!response.headers.get('Content-Type')?.includes('text/html')) return response;
       const trustedOrigin = url.hostname.endsWith('.chatgpt.site') || ['127.0.0.1','localhost'].includes(url.hostname) ? url.origin : null;
