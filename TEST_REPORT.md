@@ -46,7 +46,9 @@
 
 測試輸出位於忽略提交的 .runtime/portal-tests：results.json 為結果摘要，另有 PDF 及渲染樣本。測試腳本僅允許 localhost；資料為明確 TEST 名稱並在結束停用測試帳戶及臨時商品，不刪歷史。
 
-首次正式部署的 migration 匯入器回報 incomplete input，未完成上線。已將 trigger 安裝移至 Worker 初始化，保持完整 SQL statement、安裝成功才處理 API；結構 migration 仍為新增式，不刪除資料。修正後重新執行必要驗證再部署。
+首次正式部署的 migration 匯入器回報 incomplete input，該次未完成上線。已將 trigger 安裝移至 Worker 初始化，保持完整 SQL statement、安裝成功才處理 API；結構 migration 仍為新增式，不刪除資料。修正後四項必要檢查全部通過，Sites 第 11 版已成功部署，套用第 1 版正式 secret 設定。
+
+正式站於 2026-08-31 16:31（台北時間）完成 39 項檢查：六個前台／管理路由可開啟、正式管理登入及登出撤銷成功、未登入訂單／管理 API 拒絕、8 項示範目錄保留、7 張原圖雜湊一致、前端無 secret 或供應商連結、GitHub Pages 入口不變。正式客戶數為 0，由管理者自行建立；沒有寫入正式測試訂單。結果保存於 .runtime/portal-tests/production-check.json。此段為實際上線驗證紀錄，後續文件同步仍須經同樣的部署前檢查。
 
 ## 尚未完成及驗證限制
 
