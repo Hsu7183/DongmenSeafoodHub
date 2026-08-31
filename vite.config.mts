@@ -19,7 +19,7 @@ export default defineConfig(async () => {
       config: {
         name: 'dongmen-seafood-portal', main: './portal/worker.ts',
         compatibility_date: '2026-05-15', compatibility_flags: ['nodejs_compat'],
-        assets: { not_found_handling: 'single-page-application', run_worker_first: true },
+        assets: { binding: 'ASSETS', not_found_handling: 'single-page-application', run_worker_first: true },
         d1_databases: [{ binding: 'DB', database_name: 'dongmen-orders', database_id: '00000000-0000-4000-8000-000000000000' }],
       },
     })],
