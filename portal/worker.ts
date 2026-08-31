@@ -33,12 +33,14 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) {
-      const response = await env.ASSETS.fetch(request);
+      const pageRoute = ['/', '/order', '/quick-order', '/stats'].includes(url.pathname) || url.pathname.startsWith('/receipt/');
+      const assetRequest = pageRoute ? new Request(new URL('/index.html',request.url), request) : request;
+      const response = await env.ASSETS.fetch(assetRequest);
       if (!response.headers.get('Content-Type')?.includes('text/html')) return response;
       const trustedOrigin = url.hostname.endsWith('.chatgpt.site') || ['127.0.0.1','localhost'].includes(url.hostname) ? url.origin : null;
       let html = await response.text();
-      if (trustedOrigin && !url.pathname.startsWith('/receipt/')) html = html.replace('</head>', `<meta property="og:image" content="${trustedOrigin}/og.png"/><meta name="twitter:image" content="${trustedOrigin}/og.png"/><meta name="twitter:title" content="東門市場・食材訂購"/><meta name="twitter:description" content="下單、列印 PDF、商品數量總表。"/></head>`);
-      if (url.pathname.startsWith('/receipt/')) html = html.replace('<title>東門市場・食材訂購</title>', '<title>私人訂購單｜東門市場</title>').replace('content="東門市場・食材訂購"', 'content="私人訂購單｜東門市場"').replace('content="下單、列印 PDF、商品數量總表。"', 'content="訂單明細僅限原下單瀏覽器開啟。"');
+      if (trustedOrigin && !url.pathname.startsWith('/receipt/') && !html.includes('property="og:image"')) html = html.replace('</head>', `<meta property="og:image" content="${trustedOrigin}/og.png"/><meta name="twitter:image" content="${trustedOrigin}/og.png"/></head>`);
+      if (url.pathname.startsWith('/receipt/')) html = html.replace(/<meta (?:property="og:image"|name="twitter:image")[^>]*>/g,'').replace('<title>東門市場・食材訂購</title>', '<title>私人訂購單｜東門市場</title>').replaceAll('content="東門市場・食材訂購"', 'content="私人訂購單｜東門市場"').replaceAll('content="下單、列印 PDF、商品數量總表。"', 'content="訂單明細僅限原下單瀏覽器開啟。"');
       const headers = new Headers(response.headers); headers.set('Cache-Control','no-store'); headers.set('X-Content-Type-Options','nosniff'); headers.set('Referrer-Policy','same-origin');
       return new Response(html,{status:response.status,headers});
     }
