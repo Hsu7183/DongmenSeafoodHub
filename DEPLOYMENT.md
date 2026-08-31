@@ -1,3 +1,5 @@
+> 本文件記錄原完整 Next.js／PostgreSQL 管理版本；最新下單／統計網站請見 [PORTAL.md](PORTAL.md)。
+
 # 部署與正式發布
 
 本次交付預設只在 localhost 執行。沒有替使用者設定正式公司、食品業者登錄、域名、供應商授權、成本或佣金，也沒有發布到外網。
@@ -11,7 +13,7 @@ npm install
 npm run db:start
 npm run db:migrate
 npm run db:seed
-npm run dev
+npm run dev:full
 ```
 
 資料庫不隨 Next.js 開發伺服器關閉而清除。`db:stop` 使用 PostgreSQL 正常控制指令，只管理本 workspace 的資料庫，不停止其他 PostgreSQL，也不刪資料。
@@ -28,7 +30,7 @@ npm run db:migrate
 npm run lint
 npm run typecheck
 npm test
-npm run build
+npm run build:full
 npm run launch:check
 npm start
 ```

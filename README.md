@@ -1,5 +1,15 @@
 # DongmenSeafoodHub
 
+## 最新版：下單與統計
+
+現在預設是簡化的網站入口：首頁 → 下單 → PDF 訂購單，以及商品數量統計總表。執行 `npm install`、`npm run dev` 後開啟輸出的網址（預設 127.0.0.1:5173）。本版不需要本機 PostgreSQL，訂單以 D1 持久保存；完整說明見 [PORTAL.md](PORTAL.md)。
+
+目前只有 8 項自建示範商品，**尚未取得昊鼎完整清單／資料授權，也不會向供應商發出真實採購**。
+
+下方保留原完整版 Next.js／PostgreSQL MVP 的說明；相關啟動、建置、服務指令已改為 `dev:full`、`build:full`、`start:full`，和上線簡化版資料庫分開。
+
+## 原完整版
+
 東門市場 B2B 水產採購媒合平台。以「客戶先叫貨 → 集中彙總 → 供應商採購單 → 供應商出貨」為核心的可執行全端 MVP；不是 B2C 商城，也不建立虛假庫存。
 
 預設使用繁體中文、TWD、`DROP_SHIP`、Demo 資料及未授權供應商內容保護。真實營業人、統編、正式批發成本、正式佣金、食品業者登錄、圖片授權與網域均須管理員填入，不得把 Demo 視為正式營運資料。
@@ -15,7 +25,7 @@ Copy-Item .env.example .env
 npm run db:start
 npm run db:migrate
 npm run db:seed
-npm run dev
+npm run dev:full
 ```
 
 開啟 [本機平台](http://127.0.0.1:3000)。`db:start` 僅管理本工作區 `.runtime/postgres`，綁定 `127.0.0.1:54329`；資料會保留。停止資料庫使用 `npm run db:stop`，不刪資料。外部 PostgreSQL 應設定自己的 `DATABASE_URL`，不用執行本機資料庫腳本。

@@ -19,3 +19,5 @@ coverage/
 *.sqlite3
 authorized-products.json
 HaodingWholesalePrice.xlsx
+dist/
+.wrangler/

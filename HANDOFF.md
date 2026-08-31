@@ -1,3 +1,5 @@
+> 本文件記錄原完整 Next.js／PostgreSQL 管理版本；最新下單／統計網站請見 [PORTAL.md](PORTAL.md)。
+
 # DongmenSeafoodHub — 東門市場 B2B 水產採購媒合平台
 
 ## A. 專案目錄
@@ -44,7 +46,7 @@ npm run db:start
 npm start
 ```
 
-需要修改程式時使用 `npm run dev`，不要與 `npm start` 同時占用 3000。修改後停止網站再執行 `npm run build`；Windows 下可避免 Prisma engine 檔案被運行中的服務鎖住。新環境的安裝、migration、seed 與 PostgreSQL 設定見 README。
+需要修改程式時使用 `npm run dev:full`，不要與 `npm start` 同時占用 3000。修改後停止網站再執行 `npm run build:full`；Windows 下可避免 Prisma engine 檔案被運行中的服務鎖住。新環境的安裝、migration、seed 與 PostgreSQL 設定見 README。
 
 ## F. 測試結果
 

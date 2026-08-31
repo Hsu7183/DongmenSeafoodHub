@@ -8,4 +8,4 @@ export default defineConfig([...nextVitals, ...nextTs, {
     "react-hooks/set-state-in-effect": "off",
     "react-hooks/purity": "off"
   }
-}, globalIgnores([".next/**", "node_modules/**", ".runtime/**", "next-env.d.ts"])]);
+}, { files: ["portal/**/*.{ts,tsx}"], rules: { "@next/next/no-html-link-for-pages": "off", "@next/next/no-location-assign-relative-destination": "off", "import/no-anonymous-default-export": "off" } }, globalIgnores([".next/**", "node_modules/**", ".runtime/**", "dist/**", ".wrangler/**", "next-env.d.ts"])]);
