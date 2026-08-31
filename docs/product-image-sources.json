@@ -1,0 +1,94 @@
+{
+  "createdAt": "2026-08-31",
+  "notice": "僅供示範。非昊鼎提供、非實際商品照片，不表示品牌、規格、包裝或供應狀態。圖片僅做等比例縮小與 WebP 壓縮，未裁切或修改主體。",
+  "assets": [
+    {
+      "productId": "demo-mackerel",
+      "name": "薄鹽鯖魚",
+      "file": "public/products/demo-mackerel.webp",
+      "mode": "built-in imagegen",
+      "sourceType": "AI-generated demo illustration; not supplier photography",
+      "prompt": "Use case: product-mockup\nAsset type: demo seafood ordering catalogue product image, illustrative photography rather than an actual supplier photo.\nScene/backdrop: a clean warm ivory ceramic tray on a pale neutral worktop.\nStyle/medium: realistic natural food catalogue photography with true-to-life fish anatomy and raw textures.\nComposition/framing: 4:3 landscape image, overhead at a slight angle, centered complete subject with generous breathing room around every edge, full tray visible; one coherent photograph.\nLighting/mood: soft natural daylight, subtle grounded shadows, fresh clean visual feel.\nConstraints: fresh raw uncooked seafood; no text, logo, watermark, packaging label, hands, cutlery, garnish, decorative ingredients, collage, split screen, or borders.\nPrimary request: thin lightly salted mackerel fillets (薄鹽鯖魚).\nSubject: two slender raw mackerel fillets arranged simply side by side, one mostly skin-side up displaying silver-blue skin with characteristic dark wavy stripes, the second flesh-side up with pale moist raw flesh and a narrow visible striped skin edge; anatomically natural fish fillets, lightly salted without a visible heap of salt. Uncooked and unbrowned.",
+      "width": 720,
+      "height": 540,
+      "bytes": 38478
+    },
+    {
+      "productId": "demo-salmon",
+      "name": "厚切鮭魚",
+      "file": "public/products/demo-salmon.webp",
+      "mode": "built-in imagegen",
+      "sourceType": "AI-generated demo illustration; not supplier photography",
+      "prompt": "Use case: product-mockup\nAsset type: demo seafood ordering catalogue product image, illustrative photography rather than an actual supplier photo.\nScene/backdrop: a clean warm ivory ceramic tray on a pale neutral worktop.\nStyle/medium: realistic natural food catalogue photography with true-to-life fish anatomy and raw textures.\nComposition/framing: 4:3 landscape image, overhead at a slight angle, centered complete subject with generous breathing room around every edge, full tray visible; one coherent photograph.\nLighting/mood: soft natural daylight, subtle grounded shadows, fresh clean visual feel.\nConstraints: fresh raw uncooked seafood; no text, logo, watermark, packaging label, hands, cutlery, garnish, decorative ingredients, collage, split screen, or borders.\nPrimary request: thick-cut raw salmon steak (厚切鮭魚).\nSubject: one generous thick transverse salmon steak cut, orange raw flesh with delicate white marbling, a natural central bone opening and dark silvery skin around the outer curved edge; the steak has visible thickness and moist fresh translucent texture. Uncooked and unbrowned.",
+      "width": 720,
+      "height": 540,
+      "bytes": 47928
+    },
+    {
+      "productId": "demo-tilapia",
+      "name": "台灣鯛魚片",
+      "file": "public/products/demo-tilapia.webp",
+      "mode": "built-in imagegen",
+      "sourceType": "AI-generated demo illustration; not supplier photography",
+      "prompt": "Use case: product-mockup\nAsset type: demo seafood ordering catalogue product image, illustrative photography rather than an actual supplier photo.\nScene/backdrop: a clean warm ivory ceramic tray on a pale neutral worktop.\nStyle/medium: realistic natural food catalogue photography with true-to-life fish anatomy and raw textures.\nComposition/framing: 4:3 landscape image, overhead at a slight angle, centered complete subject with generous breathing room around every edge, full tray visible; one coherent photograph.\nLighting/mood: soft natural daylight, subtle grounded shadows, fresh clean visual feel.\nConstraints: fresh raw uncooked seafood; no text, logo, watermark, packaging label, hands, cutlery, garnish, decorative ingredients, collage, split screen, or borders.\nPrimary request: raw Taiwanese tilapia boneless fillets (台灣鯛魚片).\nSubject: two skinless boneless tilapia fillets laid neatly beside each other, pearly white and very pale pink moist raw flesh with delicate natural muscle grain, tapered whole fillet shapes, no skin and no bones. Uncooked and unbrowned.",
+      "width": 720,
+      "height": 540,
+      "bytes": 30026
+    },
+    {
+      "productId": "demo-tiger-shrimp",
+      "name": "冷凍草蝦",
+      "file": "public/products/demo-tiger-shrimp.webp",
+      "mode": "built-in imagegen",
+      "sourceType": "AI-generated demo illustration; not supplier photography",
+      "prompt": "Use case: product-mockup\nAsset type: demo seafood website product catalogue image, original AI-generated illustration rendered as realistic food photography, not an actual supplier product photo.\nScene/backdrop: warm ivory ceramic tray on a pale neutral worktop.\nStyle/medium: highly realistic natural food catalogue photograph with accurate seafood anatomy and lifelike moist shell texture.\nComposition/framing: landscape 4:3, overhead with a very slight angle, whole subjects centered on tray with generous clean margins and the entire tray visible.\nLighting/mood: soft natural daylight, gentle shadows, fresh and understated.\nConstraints: uncooked seafood only; no text, logo, watermark, labels, packaging, collage, hands, garnish, cutlery, or extra food. Nothing hides the subject.\nPrimary request: a separate product image of raw black tiger prawns (冷凍草蝦).\nSubject: five whole raw shell-on heads-on black tiger prawns arranged neatly in a shallow fan, complete tails, legs and antennae. Distinctive dark transverse tiger stripes on natural grey-blue shells, with pale bands; subtle frost is acceptable. Clearly raw, never cooked red or orange.",
+      "width": 720,
+      "height": 540,
+      "bytes": 54258
+    },
+    {
+      "productId": "demo-white-shrimp",
+      "name": "白蝦",
+      "file": "public/products/demo-white-shrimp.webp",
+      "mode": "built-in imagegen",
+      "sourceType": "AI-generated demo illustration; not supplier photography",
+      "prompt": "Use case: product-mockup\nAsset type: demo seafood website product catalogue image, original AI-generated illustration rendered as realistic food photography, not an actual supplier product photo.\nScene/backdrop: warm ivory ceramic tray on a pale neutral worktop.\nStyle/medium: highly realistic natural food catalogue photograph with accurate seafood anatomy and lifelike moist shell texture.\nComposition/framing: landscape 4:3, overhead with a very slight angle, whole subjects centered on tray with generous clean margins and the entire tray visible.\nLighting/mood: soft natural daylight, gentle shadows, fresh and understated.\nConstraints: uncooked seafood only; no text, logo, watermark, labels, packaging, collage, hands, garnish, cutlery, or extra food. Nothing hides the subject.\nPrimary request: a separate product image of raw whiteleg shrimp (白蝦).\nSubject: seven whole raw shell-on heads-on whiteleg shrimp arranged neatly in a shallow fan, complete tails, legs and antennae. Translucent light grey shells with soft silver tones, delicate pale legs; no prominent dark transverse tiger stripes. Clearly distinct from black tiger prawns. Clearly raw, never cooked pink, red or orange.",
+      "width": 720,
+      "height": 540,
+      "bytes": 69158
+    },
+    {
+      "productId": "demo-squid",
+      "name": "透抽",
+      "file": "public/products/demo-squid.webp",
+      "mode": "built-in imagegen",
+      "sourceType": "AI-generated demo illustration; not supplier photography",
+      "prompt": "Use case: product-mockup\nAsset type: demo seafood website product catalogue image, original AI-generated illustration rendered as realistic food photography, not an actual supplier product photo.\nScene/backdrop: warm ivory ceramic tray on a pale neutral worktop.\nStyle/medium: highly realistic natural food catalogue photograph with accurate seafood anatomy and lifelike moist shell texture.\nComposition/framing: landscape 4:3, overhead with a very slight angle, whole subjects centered on tray with generous clean margins and the entire tray visible.\nLighting/mood: soft natural daylight, gentle shadows, fresh and understated.\nConstraints: uncooked seafood only; no text, logo, watermark, labels, packaging, collage, hands, garnish, cutlery, or extra food. Nothing hides the subject.\nPrimary request: a separate product image of raw whole slender squid (透抽).\nSubject: exactly two complete small slender squid with elongated tapered mantles, delicate fins, visible heads and complete natural tentacle clusters, side by side on the tray without crowding. Natural moist ivory flesh with subtle pink and purple speckles. Whole intact raw squid, not octopus, not cut rings, not cooked, not breaded.",
+      "width": 720,
+      "height": 540,
+      "bytes": 42320
+    },
+    {
+      "productId": "demo-fish-belly",
+      "name": "魚肚",
+      "file": "public/products/demo-fish-belly.webp",
+      "mode": "built-in imagegen",
+      "sourceType": "AI-generated demo illustration; not supplier photography",
+      "prompt": "Use case: product-mockup\nAsset type: original demonstration seafood catalogue product image, not an actual supplier product photograph.\nPrimary request: realistic natural food catalogue photograph of raw boneless milkfish belly (魚肚).\nScene/backdrop: warm ivory ceramic tray on a pale neutral worktop.\nSubject: two opened thin broad skin-on milkfish belly cuts, pale ivory raw flesh with a visible darker center and silver-grey skin at the edges. Both cuts shown completely, arranged separately with slight natural overlap, unmistakably broad belly fillets rather than whole fish or thick steaks.\nStyle/medium: realistic food product photography.\nComposition/framing: 4:3 landscape, overhead or very slight angle, centered full subjects with generous margins.\nLighting/mood: soft natural daylight, fresh chilled seafood ingredient.\nMaterials/textures: delicate moist raw fish flesh, fine natural flesh grain, silvery grey skin; clean ivory ceramic.\nConstraints: raw uncooked flesh, NOT orange salmon, NOT fried. No text, labels, logo, watermark, collage, packaging, extra objects or garnish hiding the subject.",
+      "width": 720,
+      "height": 540,
+      "bytes": 35182
+    },
+    {
+      "productId": "demo-whitebait",
+      "name": "吻仔魚",
+      "file": "public/products/demo-whitebait.webp",
+      "mode": "built-in imagegen",
+      "sourceType": "AI-generated demo illustration; not supplier photography",
+      "prompt": "Use case: product-mockup\nAsset type: original demonstration seafood catalogue product image, not an actual supplier product photograph.\nPrimary request: realistic natural food catalogue photograph of tiny whole whitebait fish (吻仔魚).\nScene/backdrop: warm ivory ceramic tray on a pale neutral worktop.\nSubject: a loose small pile of delicate short translucent white and silver whole whitebait, each miniature fish discernible with its tiny dark eyes, slender body and little tail; a chilled seafood ingredient.\nStyle/medium: realistic food product photography.\nComposition/framing: 4:3 landscape, overhead or very slight angle, centered complete pile with generous margins. Detailed enough to discern individual tiny whole fish.\nLighting/mood: soft natural daylight, clean quiet catalogue styling.\nMaterials/textures: translucent pearly white moist bodies with fine silver reflections and tiny black eyes; clean ivory ceramic.\nConstraints: show miniature whole whitebait fish, NOT rice, NOT anchovy fillets, NOT larger whole sardines, not cooked. No text, labels, logo, watermark, collage, packaging, extra objects or garnish hiding the subject.",
+      "width": 720,
+      "height": 540,
+      "bytes": 51804
+    }
+  ]
+}
