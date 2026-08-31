@@ -4,14 +4,14 @@ import type { Product } from './types';
 
 // Original AI illustrations for demo records only; never imply supplier photography.
 const demoProductImages: Record<string, string> = {
-  'demo-mackerel': '/products/demo-mackerel.webp',
-  'demo-salmon': '/products/demo-salmon.webp',
-  'demo-tilapia': '/products/demo-tilapia.webp',
-  'demo-tiger-shrimp': '/products/demo-tiger-shrimp.webp',
-  'demo-white-shrimp': '/products/demo-white-shrimp.webp',
-  'demo-squid': '/products/demo-squid.webp',
-  'demo-fish-belly': '/products/demo-fish-belly.webp',
-  'demo-whitebait': '/products/demo-whitebait.webp',
+  'demo-mackerel': '/products/demo-mackerel.png',
+  'demo-salmon': '/products/demo-salmon.png',
+  'demo-tilapia': '/products/demo-tilapia.png',
+  'demo-tiger-shrimp': '/products/demo-tiger-shrimp.png',
+  'demo-white-shrimp': '/products/demo-white-shrimp.png',
+  'demo-squid': '/products/demo-squid.png',
+  'demo-fish-belly': '/products/demo-fish-belly.png',
+  'demo-whitebait': '/products/demo-whitebait.png',
 };
 
 export function ProductImage({ product }: { product: Pick<Product, 'id' | 'name' | 'demo'> }) {
