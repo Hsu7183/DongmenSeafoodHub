@@ -1,0 +1,59 @@
+{
+  "name": "dongmen-seafood-hub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack --hostname 127.0.0.1 --port 3000",
+    "build": "prisma generate && next build --webpack",
+    "start": "next start --hostname 127.0.0.1 --port 3000",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:integration": "node --env-file=.env scripts/test-integration.mjs",
+    "db:start": "node scripts/db/start.mjs",
+    "db:stop": "node scripts/db/stop.mjs",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "haoding:preview": "node --env-file=.env scripts/haoding/preview.mjs",
+    "launch:check": "node --env-file=.env scripts/check-launch.mjs",
+    "admin:bootstrap": "node --env-file=.env scripts/bootstrap-admin.mjs"
+  },
+  "prisma": { "seed": "tsx prisma/seed.ts" },
+  "dependencies": {
+    "@prisma/client": "6.19.3",
+    "bcryptjs": "^3.0.2",
+    "decimal.js": "^10.6.0",
+    "dotenv": "^17.2.0",
+    "exceljs": "^4.4.0",
+    "lucide-react": "^0.577.0",
+    "next": "16.3.3",
+    "papaparse": "^5.5.3",
+    "pdfkit": "^0.17.2",
+    "pg": "^8.16.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.1.0"
+  },
+  "overrides": {
+    "deepmerge-ts": "8.0.0",
+    "exceljs": { "uuid": "11.1.1" }
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^24.0.0",
+    "@types/papaparse": "^5.3.16",
+    "@types/pdfkit": "^0.17.3",
+    "@types/pg": "^8.15.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "embedded-postgres": "18.4.0-beta.17",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.3.3",
+    "prisma": "6.19.3",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}
