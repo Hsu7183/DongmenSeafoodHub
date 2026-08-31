@@ -64,7 +64,7 @@
 - `purchase_batch_events`：配貨修改前後快照與管理來源。
 - `portal_atomic_guards`：D1 batch 內的暫時一致性檢查；成功交易會清除，失敗整批回滾。
 
-`drizzle/0001_tough_barracuda.sql` 只新增表、欄位與索引；`0002_allocation_guards.sql` 新增資料庫保護，不刪除舊資料。開發與正式啟動使用同一份 migration SQL 作可重入初始化；正式打包同時包含 Drizzle migration。
+`drizzle/0001_tough_barracuda.sql` 只新增表、欄位與索引；`0002_allocation_guards.sql` 保留遷移位置。配貨 trigger 位於 `portal/constraints.sql`，由 Worker 啟動以完整 statement 安裝，成功後才處理任何 Portal API；若安裝失敗則拒絕服務，不會略過保護。此方式避免正式部署的 migration 匯入器拆開 trigger 內的分號而出錯。開發與正式使用同一份 SQL，不刪除舊資料；正式打包同時包含 Drizzle migration 與 Worker 內的保護 SQL。
 
 ## 身分、安全與舊訂單
 

@@ -1,7 +1,7 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import { demoCatalog } from './catalog';
 import migration from '../drizzle/0001_tough_barracuda.sql?raw';
-import constraints from '../drizzle/0002_allocation_guards.sql?raw';
+import constraints from './constraints.sql?raw';
 
 export async function ensureDatabase(db: D1Database) {
   // Idempotent initialization also permits local development without remote migrations.

@@ -46,6 +46,8 @@
 
 測試輸出位於忽略提交的 .runtime/portal-tests：results.json 為結果摘要，另有 PDF 及渲染樣本。測試腳本僅允許 localhost；資料為明確 TEST 名稱並在結束停用測試帳戶及臨時商品，不刪歷史。
 
+首次正式部署的 migration 匯入器回報 incomplete input，未完成上線。已將 trigger 安裝移至 Worker 初始化，保持完整 SQL statement、安裝成功才處理 API；結構 migration 仍為新增式，不刪除資料。修正後重新執行必要驗證再部署。
+
 ## 尚未完成及驗證限制
 
 - 本輪沒有自動瀏覽器端到端測試，HTTP 測試不等同於完整 UI 驗收。
