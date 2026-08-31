@@ -38,6 +38,14 @@ export default {
       // asset internally so the customer's /order or /receipt URL stays intact.
       const assetRequest = pageRoute ? new Request(new URL('/',request.url), request) : request;
       const response = await env.ASSETS.fetch(assetRequest);
+      // The hosted asset service can label WebP as an octet stream. Restore the
+      // image MIME only for successfully served product assets, never HTML fallbacks.
+      if (response.ok && url.pathname.startsWith('/products/') && url.pathname.endsWith('.webp') && response.headers.get('Content-Type')?.split(';')[0] === 'application/octet-stream') {
+        const headers = new Headers(response.headers);
+        headers.set('Content-Type', 'image/webp');
+        headers.set('X-Content-Type-Options', 'nosniff');
+        return new Response(response.body, { status: response.status, headers });
+      }
       if (!response.headers.get('Content-Type')?.includes('text/html')) return response;
       const trustedOrigin = url.hostname.endsWith('.chatgpt.site') || ['127.0.0.1','localhost'].includes(url.hostname) ? url.origin : null;
       let html = await response.text();
