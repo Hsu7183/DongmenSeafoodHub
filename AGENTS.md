@@ -12,4 +12,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - 完成每次可用且已確認的修改後，直接提交並同步到 `https://github.com/Hsu7183/DongmenSeafoodHub`，不必重複詢問同步許可。不要推送未完成內容、密鑰、私人報價或未授權供應商素材。
 - 影響線上網站的更新，同步發布到既有網站，保留 `https://hsu7183.github.io/DongmenSeafoodHub/` 入口。
-- 商品列表需要對應圖片。示範圖片須標示來源性質，不可冒充昊鼎實際商品照片；原有供應商資料授權限制維持不變。
+- 商品列表需要對應圖片。使用者最新指定不要 AI 商品圖，改從昊鼎官網取得對應圖片；保留原圖、品牌標記與來源連結。找不到同商品時留待補圖，不以別的商品或 AI 圖代替。不把來源核對宣稱為已驗證供應商授權；正式全目錄匯入及交易閘門維持不變。

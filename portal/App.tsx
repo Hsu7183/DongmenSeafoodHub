@@ -29,7 +29,7 @@ function loadCatalog() {
 }
 function Header({ active }: { active: string }) { return <header className="site-header"><a href="/" className="brand"><Fish size={28}/><span>東門市場<small>食材集中訂購</small></span></a><nav aria-label="主要選單"><a href="/order" className={active==='order'?'active':''}>下單</a><a href="/stats" className={active==='stats'?'active':''}>統計</a></nav></header>; }
 function ErrorMessage({ error }: { error: string }) { return error ? <div className="error" role="alert">{error}</div> : null; }
-function DemoNotice() { return <p className="demo-notice">目前為自建示範商品，圖片為 AI 食材示意圖，並非昊鼎實拍或完整目錄；送出的訂單只供流程測試，不會向供應商採購。請勿填入真實個資。</p>; }
+function DemoNotice() { return <p className="demo-notice">商品圖片取自對應的昊鼎官網商品頁，可點圖查看來源。本站規格仍為示範，並非昊鼎完整目錄；實際規格、包裝與供貨以供應商確認為準。訂單僅供測試，不會實際採購。請勿填入真實個資。</p>; }
 function saveDraft(value: unknown) { try { sessionStorage.setItem('dm-order-draft', JSON.stringify(value)); } catch { /* Draft storage is optional; orders are stored on the server. */ } }
 function readDraft() { try { return JSON.parse(sessionStorage.getItem('dm-order-draft') || '{}'); } catch { return {}; } }
 
