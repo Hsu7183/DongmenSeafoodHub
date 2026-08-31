@@ -2,7 +2,9 @@
 
 ## 最新版：下單與統計
 
-直接開啟 [東門市場・食材訂購網站](https://dongmen-seafood-hub.mr-hsu.chatgpt.site)。這是可操作的示範網站，不是 GitHub 程式碼頁面。
+直接開啟 [GitHub Pages 示範入口](https://hsu7183.github.io/DongmenSeafoodHub/)，會自動轉到 [東門市場・食材訂購示範網站](https://dongmen-seafood-hub.mr-hsu.chatgpt.site)。
+
+GitHub Pages 使用 `main` 分支的 `/docs` 靜態入口。實際下單、PDF 及統計仍由現有 Sites 示範網站與 D1 資料庫處理，沒有移轉或清空既有資料。GitHub Pages 不承接正式交易；正式商業營運應使用支援該用途的網站主機。
 
 現在預設是簡化的網站入口：首頁 → 下單 → PDF 訂購單，以及商品數量統計總表。執行 `npm install`、`npm run dev` 後開啟輸出的網址（預設 127.0.0.1:5173）。本版不需要本機 PostgreSQL，訂單以 D1 持久保存；完整說明見 [PORTAL.md](PORTAL.md)。
 
