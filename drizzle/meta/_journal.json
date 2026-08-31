@@ -8,6 +8,20 @@
       "when": 1788143905251,
       "tag": "0000_tiny_ghost_rider",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788161604181,
+      "tag": "0001_tough_barracuda",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788162583721,
+      "tag": "0002_allocation_guards",
+      "breakpoints": true
     }
   ]
 }

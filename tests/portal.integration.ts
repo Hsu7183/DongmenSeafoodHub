@@ -2,21 +2,41 @@ import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { makeOrderPdf } from '../portal/pdf';
 import type { Order, Product, Summary } from '../portal/types';
+import {workflowTests} from './portal-workflow';
 
 const base = process.env.PORTAL_TEST_URL || 'http://127.0.0.1:5173';
+if(!['127.0.0.1','localhost'].includes(new URL(base).hostname)) throw Error('Portal tests only run on localhost');
+let adminCookie='';
+const owners=new Map<string,string>();
+const runId=crypto.randomUUID().slice(0,8);
+async function request(path:string,cookie:string,method='GET',payload?:unknown,extra:Record<string,string>={}) {
+  return fetch(base+'/api/portal/'+path,{method,headers:{Cookie:cookie,'CF-Connecting-IP':`2001:db8:${runId.slice(0,4)}:${runId.slice(4,8)}::2`,...(method==='GET'?{}:{Origin:base,'Content-Type':'application/json'}),...extra},...(payload===undefined?{}:{body:JSON.stringify(payload)})});
+}
+async function setupAdmin(){
+  const vars=await readFile('.dev.vars','utf8'); const secret=vars.match(/^PORTAL_ADMIN_SECRET="([^"]+)"/m)?.[1];
+  assert.ok(secret,'local admin secret configured');
+  const r=await request('auth/admin-login','','POST',{secret});assert.equal(r.status,200,await r.clone().text());adminCookie=r.headers.get('set-cookie')!.split(';')[0];
+}
+async function createCustomer(label:string,pin='2468'){
+  const r=await request('admin/customers',adminCookie,'POST',{stallName:'TEST '+runId+' '+label+' '+crypto.randomUUID().slice(0,4),pin});assert.equal(r.status,201,await r.clone().text());return (await r.json()).customer as {id:string;stallName:string};
+}
+async function login(customerId:string,pin='2468'){
+  const r=await request('auth/login','','POST',{customerId,pin});assert.equal(r.status,200,await r.clone().text());const token=r.headers.get('set-cookie')!.split(';')[0];owners.set(token,customerId);return token;
+}
 let checks = 0;
 function check(condition: unknown, description: string) { assert.ok(condition,description);checks++; }
 async function client() {
   const response = await fetch(`${base}/api/portal/catalog`);
   check(response.status === 200,'catalog works');
-  const cookie = response.headers.get('set-cookie')?.split(';')[0] || '';
-  check(cookie.startsWith('dm_portal_session='),'private session issued');
+  const customer=await createCustomer('攤'); const cookie=await login(customer.id);
+  check(cookie.startsWith('dm_customer_session='),'authenticated customer session issued');
   const data = await response.json() as {products:Product[];demo:boolean};
   check(data.demo && data.products.length===8,'only eight authored demo products');
-  return { cookie, data };
+  return { cookie, data,customer };
 }
-async function post(cookie:string, body:unknown, origin=base) { return fetch(`${base}/api/portal/orders`,{method:'POST',headers:{Cookie:cookie,Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(body)}); }
+async function post(cookie:string, body:unknown, origin=base) { return fetch(`${base}/api/portal/orders`,{method:'POST',headers:{Cookie:cookie,Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({...body as object,expectedCustomerId:owners.get(cookie)})}); }
 async function main() {
+  await setupAdmin();
   const a=await client(), b=await client();
   const before=await (await fetch(`${base}/api/portal/stats`)).json() as Summary;
   const body={idempotencyKey:crypto.randomUUID(),stall:'TEST A 攤',notes:'繁體中文測試，不是真實交易。',items:[{productId:'demo-mackerel',quantity:2},{productId:'demo-tiger-shrimp',quantity:3}]};
@@ -62,7 +82,8 @@ async function main() {
   await writeFile('.runtime/portal-tests/order.pdf',pdf);
   const large:Order={...first,number:'DM-PDF-LONG-TEST',stall:'繁體中文長攤位名稱與列印換行測試',notes:'備註中文換行驗證。'.repeat(30),items:Array.from({length:70},(_,i)=>({productId:`test-${i}`,sku:`TEST-${i}`,productName:`第${i+1}項商品：冷凍海鮮長商品名稱與規格換行測試`,specification:'每包 600g，測試長規格與包裝單位，非正式商品',unit:'包',quantity:i+1}))};
   await writeFile('.runtime/portal-tests/long-order.pdf',await makeOrderPdf(large,font));
-  await writeFile('.runtime/portal-tests/results.json',JSON.stringify({checks,createdOrderIds:[first.id,parallelData[0].order.id,(await second.json()).order.id],beforeOrders:before.orderCount,afterOrders:after.orderCount},null,2));
-  console.log(JSON.stringify({checks,status:'passed',pdfs:2}));
+  await workflowTests(base,adminCookie,a,b,check);
+  await writeFile('.runtime/portal-tests/results.json',JSON.stringify({checks,status:'passed',pdfs:4,createdOrderIds:[first.id,parallelData[0].order.id,(await second.json()).order.id],beforeOrders:before.orderCount,afterOrders:after.orderCount},null,2));
+  console.log(JSON.stringify({checks,status:'passed',pdfs:4}));
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

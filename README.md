@@ -1,18 +1,47 @@
 # DongmenSeafoodHub
 
-## 最新版：下單與統計
+## 最新公開版：攤位 PIN、訂單與集中採購
 
-直接開啟 [GitHub Pages 示範入口](https://hsu7183.github.io/DongmenSeafoodHub/)，會自動轉到 [東門市場・食材訂購示範網站](https://dongmen-seafood-hub.mr-hsu.chatgpt.site)。
+[GitHub Pages 入口](https://hsu7183.github.io/DongmenSeafoodHub/) 仍轉到 [東門市場・食材訂購](https://dongmen-seafood-hub.mr-hsu.chatgpt.site)。網址不變。
 
-GitHub Pages 使用 `main` 分支的 `/docs` 靜態入口。實際下單、PDF 及統計仍由現有 Sites 示範網站與 D1 資料庫處理，沒有移轉或清空既有資料。GitHub Pages 不承接正式交易；正式商業營運應使用支援該用途的網站主機。
+延續 React／TypeScript／Vite／Cloudflare Worker／D1／Drizzle；沒有重寫公開網站，也沒有接入或雙寫原完整版 PostgreSQL。
 
-現在預設是簡化的網站入口：首頁 → 下單 → PDF 訂購單，以及商品數量統計總表。執行 `npm install`、`npm run dev` 後開啟輸出的網址（預設 127.0.0.1:5173）。本版不需要本機 PostgreSQL，訂單以 D1 持久保存；完整說明見 [PORTAL.md](PORTAL.md)。
+### 已完成
 
-目前只有 8 項自建示範商品，**尚未取得昊鼎完整清單／資料授權，也不會向供應商發出真實採購**。
+- 攤位選單＋4 位 PIN；同裝置記住登入、跨裝置讀取自己的歷史訂單。
+- 手機大圖、大字、大按鈕；常買最多 20 項，歷史訂單一鍵帶回再訂。下架或規格變更不自動替換。
+- SUBMITTED 訂單可改數量／備註或取消；保留原量及每次修訂。取消不計入統計。
+- 管理者可建立攤位、重設 PIN、停用帳戶、依日期選單截單。
+- 已截單訂單可建立集中採購批次，資料庫約束防重複採購。
+- 輸入供應量與各攤配貨；不得超量，短配須客戶確認，重新配貨會重新要求確認。
+- 供應商採購與各攤配貨分開列印；顧客 PDF 顯示需求、配貨及取消／異動狀態，不含價格。
+- 未儲存的訂單修改不能直接下載／列印；未儲存的配貨不能列印或完成批次。
 
-依最新指示，商品圖片已改為 7 張昊鼎官網原圖；來源僅存於維護文件，顧客頁面不提供官網連結，AI 商品圖全部移除；整尾透抽暫缺對應圖片。這是圖片替換，規格仍為示範，沒有啟用全目錄正式匯入或真實交易。來源核對紀錄見 `docs/product-image-sources.json`。
+### 使用與管理
 
-下方保留原完整版 Next.js／PostgreSQL MVP 的說明；相關啟動、建置、服務指令已改為 `dev:full`、`build:full`、`start:full`，和上線簡化版資料庫分開。
+顧客：首頁 → 下單 → 選攤位及 PIN → 選商品 → 確認；「我的訂單」可修改、取消、再訂與確認短配。
+
+管理者：[管理入口](https://dongmen-seafood-hub.mr-hsu.chatgpt.site/admin/orders) → 攤位管理 → 設定店名及 PIN → 選訂單截單 → 集中採購 → 配貨確認 → 客戶確認短配 → 完成。
+
+管理密碼與 PIN pepper 是獨立的部署 secret，不在原始碼或此文件提供。沒有任何公開預設管理密碼或預設客戶 PIN。建立攤位後由管理者私下交付 PIN。
+
+### 本機執行
+
+Node.js 24、npm；先安裝套件。將 .dev.vars.example 複製成 .dev.vars，設定兩個不同的長隨機 secret：PORTAL_ADMIN_SECRET、PORTAL_PIN_PEPPER。勿上傳 .dev.vars。執行 npm run dev；設定變更後重啟。
+
+驗證指令：npm run typecheck、npm run lint、npm run build、npm run test:portal。Portal 測試只允許 localhost，使用實際 Worker／本機 D1，會留下 TEST 標記資料，並在結束後停用測試商品；不對正式站寫測試訂單。
+
+### 測試結果與目前界線
+
+2026-08-31 第二階段：171 項 HTTP／D1／遷移／權限／競態與流程檢查通過，另產生 4 份 PDF 驗證樣本。包括跨裝置與跨攤隔離、10 改 6、取消扣除、60 需求配 50、配 51 拒絕、短配確認、重複採購與 50 張×8 商品大批次。完整結果與驗證邊界見 TEST_REPORT.md。
+
+尚未完成手機實機及年長攤販使用者驗證；瀏覽器列印頁未做自動瀏覽器操作測試。正式營運仍待商品清單、真實規格、圖片授權、客戶／交易政策、備份還原與營運權限確認。
+
+目前仍只有 8 項示範商品、7 張官網原圖，整尾透抽待補圖；全程沒有供應商官網商品連結。沒有開啟真實採購、金流、LINE、ERP、POS 或複雜 Dashboard。
+
+舊匿名訂單與原 Cookie 讀取方式保留，但不按攤名自動歸戶；未歸戶舊單不可進入新採購批次。正式歸戶需另行核實。GitHub Pages 僅作入口，實際服務及 D1 資料由既有主機處理。
+
+詳細操作、資料模型及限制見 [PORTAL.md](PORTAL.md)。以下保留原 Next.js／PostgreSQL MVP 的歷史說明；它使用 dev:full／build:full／start:full，並非上述公開版。
 
 ## 原完整版
 

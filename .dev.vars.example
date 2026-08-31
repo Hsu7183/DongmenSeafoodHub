@@ -1,0 +1,5 @@
+# Copy to .dev.vars for local development. Generate separate random secrets; never commit them.
+PORTAL_ADMIN_SECRET=""
+PORTAL_PIN_PEPPER=""
+SUPPLIER_CONTENT_AUTHORIZED="false"
+PORTAL_ACCEPT_LIVE_ORDERS="false"

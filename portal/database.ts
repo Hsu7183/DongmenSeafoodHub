@@ -1,5 +1,7 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import { demoCatalog } from './catalog';
+import migration from '../drizzle/0001_tough_barracuda.sql?raw';
+import constraints from '../drizzle/0002_allocation_guards.sql?raw';
 
 export async function ensureDatabase(db: D1Database) {
   // Idempotent initialization also permits local development without remote migrations.
@@ -12,4 +14,12 @@ export async function ensureDatabase(db: D1Database) {
     db.prepare(`CREATE INDEX IF NOT EXISTS idx_portal_items_order ON portal_order_items(order_id)`),
   ]);
   await db.batch(demoCatalog.map(product => db.prepare(`INSERT OR IGNORE INTO portal_products (id,sku,name,specification,unit,category,temperature,supplier,source_type,source_updated_at,authorization_status,demo) VALUES (?,?,?,?,?,?,?,?,'DEMO','2026-08-31T00:00:00Z','DEMO',1)`).bind(product.id, product.sku, product.name, product.specification, product.unit, product.category, product.temperature, '平台自建示範')));
+  // Additive migration only. Hosted D1 may already have applied the same migration.
+  for(const sql of migration.split('--> statement-breakpoint').map(s=>s.trim()).filter(Boolean)){
+    const alter=sql.match(/^ALTER TABLE `([^`]+)` ADD `([^`]+)`/);
+    if(alter){const columns=await db.prepare(`PRAGMA table_info(${alter[1]})`).all<{name:string}>();if(columns.results.some(c=>c.name===alter[2]))continue;}
+    const statement=sql.replace(/^CREATE TABLE /,'CREATE TABLE IF NOT EXISTS ').replace(/^CREATE UNIQUE INDEX /,'CREATE UNIQUE INDEX IF NOT EXISTS ').replace(/^CREATE INDEX /,'CREATE INDEX IF NOT EXISTS ');
+    try{await db.prepare(statement).run();}catch(e){if(!(alter&&/duplicate column/.test(String(e))))throw e;}
+  }
+  for(const sql of constraints.split('--> statement-breakpoint').map(s=>s.trim()).filter(Boolean))await db.prepare(sql).run();
 }

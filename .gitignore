@@ -21,3 +21,5 @@ authorized-products.json
 HaodingWholesalePrice.xlsx
 dist/
 .wrangler/
+.dev.vars*
+!.dev.vars.example
